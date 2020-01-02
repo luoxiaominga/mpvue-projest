@@ -3,7 +3,7 @@ const router = require('koa-router')()
 const request = require('co-request')
 let URI = require('./uri').URI
 
-URI += '/v2/movie'
+URI += '/v2'
 
 router.prefix('/douban')
 router.get(['/:type', '/:type/:id'], async ctx => {

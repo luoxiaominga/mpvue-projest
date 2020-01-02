@@ -17,7 +17,7 @@
       <block v-for="(item, index) in series" :key="item.key">
         <view class="md-board__item">
           <navigator
-            :url="'../list/main?type=' + item.key + '&title=' + item.title"
+            :url="'../listBooks/main?type=' + item.key + '&title=' + item.title"
             hover-class="none"
           >
             <view class="md-board__title">
