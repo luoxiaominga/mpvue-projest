@@ -30,6 +30,10 @@ const store = new Vuex.Store({
     listBooks: {
       namespaced: true,
       ...listBooks
+    },
+    itemBooks: {
+      namespaced: true,
+      ...listBooks
     }
   }
 })

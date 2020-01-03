@@ -28,7 +28,7 @@ const mutations = {
 const actions = {
   async getSeries ({state, commit}) {
     const tasks = state.series.map(item => {
-      return getBookSeriesData(item.key, 8)
+      return getBookSeriesData({id: item.key, count: 8})
     })
     let series = await Promise.all(tasks)
     commit(BOARD_BOOKS_LIST, {series})

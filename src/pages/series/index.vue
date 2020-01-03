@@ -34,7 +34,7 @@
               <navigator
                 v-for="(book, i) in item.books"
                 :key="book.id + index + i"
-                :url="'../item/main?id=' + book.id"
+                :url="'../itemBooks/main?id=' + book.id"
               >
                 <view class="md-board__movie">
                   <image class="md-board__movie-image" :src="book.images.large" mode="aspectFill"></image>

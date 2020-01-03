@@ -1,11 +1,12 @@
-import { getBoardData } from '@/utils/api'
-import { LIST_MOVIE_LIST, LIST_CLEAR_STATE } from '@/store/mutations-type'
+import {getBookSeriesData} from '@/utils/api'
+import {LIST_MOVIE_LIST, LIST_CLEAR_STATE} from '@/store/mutations-type'
 
 const state = {
   page: 1,
   hasMore: true,
   movies: [],
-  type: ''
+  type: '',
+  // total:0
 }
 
 const mutations = {
@@ -15,11 +16,12 @@ const mutations = {
     state.movies = []
   },
 
-  [LIST_MOVIE_LIST] (state, { data, type }) {
+  [LIST_MOVIE_LIST] (state, {data, type}) {
     state.type = type
-    if (data.subjects.length) {
-      state.movies.push.apply(state.movies, data.subjects)
-      if (type === 'us_box') {
+    if (data.books.length) {
+      state.movies.push.apply(state.movies, data.books)
+      console.log(state.movies)
+      if (data.total <= data.start) {
         state.hasMore = false
       }
     } else {
@@ -29,10 +31,10 @@ const mutations = {
 }
 
 const actions = {
-  async getMovies ({ state, commit }, { type, search }) {
+  async getMovies ({state, commit}, {type, search}) {
     if (!state.hasMore) return
 
-    let data = await getBoardData({ board: type, page: state.page++, search })
+    let data = await getBookSeriesData({id: type, page: state.page++, search})
 
     commit(LIST_MOVIE_LIST, {data, type})
   }

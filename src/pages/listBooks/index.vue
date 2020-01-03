@@ -1,18 +1,18 @@
 <template>
   <div class="md-list">
-    <movie-list :movies="movies" :has-more="hasMore" :type="type"></movie-list>
+    <book-list :movies="movies" :has-more="hasMore" :type="type"></book-list>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex'
 import wx from '@/utils/wx'
-import MovieList from '@/components/movie-list'
+import BookList from '@/components/book-list'
 import { LIST_CLEAR_STATE } from '@/store/mutations-type'
 
 export default {
   components: {
-    'movie-list': MovieList
+    'book-list': BookList
   },
 
   data () {
@@ -22,14 +22,14 @@ export default {
   },
 
   computed: {
-    ...mapState('list', ['movies', 'hasMore', 'type'])
+    ...mapState('listBooks', ['movies', 'hasMore', 'type'])
   },
 
   methods: {
-    ...mapMutations('list', {
+    ...mapMutations('listBooks', {
       clearState: LIST_CLEAR_STATE
     }),
-    ...mapActions('list', [
+    ...mapActions('listBooks', [
       'getMovies'
     ]),
     async getMovieList () {
@@ -39,7 +39,7 @@ export default {
 
   mounted () {
     const { title, type } = this.$root.$mp.query
-    wx.setNavigationBarTitle({ title: title + ' « 电影 « 豆瓣' })
+    wx.setNavigationBarTitle({ title: title })
     this.type = type
     this.getMovieList()
   },

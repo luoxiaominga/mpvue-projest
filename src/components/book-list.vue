@@ -2,12 +2,12 @@
   <div class="md-movie-list">
     <view class="md-movie-list__list">
       <template v-if="type !== 'us_box'">
-        <navigator :url="'../item/main?id=' + item.id" v-for="(item, index) in movies" :key="item.id">
+        <navigator :url="'../itemBooks/main?id=' + item.id" v-for="(item, index) in movies" :key="item.id">
           <movie-item :movie="item"></movie-item>
         </navigator>
       </template>
       <template v-else>
-        <navigator :url="'../item/main?id=' + item.subject.id" v-for="(item, index) in movies" :key="item.rank">
+        <navigator :url="'../itemBooks/main?id=' + item.subject.id" v-for="(item, index) in movies" :key="item.rank">
           <movie-item :movie="item.subject"></movie-item>
         </navigator>
       </template>
@@ -25,54 +25,54 @@
 </template>
 
 <script>
-import MovieItem from '@/components/movie-item'
+  import MovieItem from '@/components/book-item'
 
-export default {
-  components: {
-    'movie-item': MovieItem
-  },
-
-  props: {
-    movies: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    hasMore: {
-      type: Boolean,
-      default: true
+  export default {
+    components: {
+      'movie-item': MovieItem
     },
 
-    type: String
+    props: {
+      movies: {
+        type: Array,
+        default () {
+          return []
+        }
+      },
+      hasMore: {
+        type: Boolean,
+        default: true
+      },
+
+      type: String
+    }
   }
-}
 </script>
 
 <style lang="scss">
-@include c('movie-list') {
+  @include c('movie-list') {
 
-  @include e('list') {
-    height: 100%;
-  }
+    @include e('list') {
+      height: 100%;
+    }
 
-  @include e('tips') {
-    font-size: 28rpx;
-    text-align: center;
-    padding: 50rpx;
-    color: #ccc;
-  }
+    @include e('tips') {
+      font-size: 28rpx;
+      text-align: center;
+      padding: 50rpx;
+      color: #ccc;
+    }
 
-  @include e('tips-text') {
-    vertical-align: middle;
-  }
+    @include e('tips-text') {
+      vertical-align: middle;
+    }
 
-  @include e('tips-image') {
-    width: 40rpx;
-    height: 40rpx;
-    margin-right: 20rpx;
-    vertical-align: middle;
+    @include e('tips-image') {
+      width: 40rpx;
+      height: 40rpx;
+      margin-right: 20rpx;
+      vertical-align: middle;
+    }
   }
-}
 
 </style>
