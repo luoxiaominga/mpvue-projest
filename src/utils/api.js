@@ -47,20 +47,31 @@ export function getBoardData ({board = 'top250', page = 1, count = 20, city = '�
 }
 
 // 通过isbn获取书本信息
-export function getBookData (isbn) {
+export function getBookDataIsbn (isbn) {
   return request.get(`/book/isbn/${isbn}`)
 }
+
 // 通过id获取系列图书
-export function getBookSeriesData (id, count) {
-  return request.get(`/book/series/${id}/books?count=${count}`)
+export function getBookSeriesData ({id, count = 20, page = 1, search = ''} = {}) {
+  let params = {}
+  params.start = (page - 1) * count
+  params.count = count
+  if (id === 'search') {
+    params.q = search
+    return request.get(`book/search`, params)
+  }
+  return request.get(`/book/series/${id}/books`, params)
 }
-/**
- * 获取电影条目信息：
- *  接口地址: subject/:id
- *  要求权限：movie_basic_r
- *  可传参数：
- *    @params {number} id 电影id
- */
+
+export function getBookDataId (id) {
+  return request.get(`/book/${id}`)
+}
+// 通过isbn添加书本到数据库
+export function addBook (isbn) {
+  return request.get(`/addbook?isbn=${isbn}`)
+}
+
+
 export function getMovieData (id) {
-  return request.get(`/subject/${id}`)
+  return request.get(`/movie/subject/${id}`)
 }

@@ -5,6 +5,7 @@ import item from './modules/item'
 import board from './modules/board'
 import list from './modules/list'
 import listBooks from './modules/listBooks'
+import itemBooks from './modules/itemBooks'
 import series from './modules/series'
 
 Vue.use(Vuex)
@@ -33,7 +34,7 @@ const store = new Vuex.Store({
     },
     itemBooks: {
       namespaced: true,
-      ...listBooks
+      ...itemBooks
     }
   }
 })

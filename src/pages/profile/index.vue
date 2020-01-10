@@ -9,12 +9,14 @@
       <text class="md-profile__user-nickname">{{ userInfo.nickName }}</text>
       <text :hidden="!userInfo.city">{{ userInfo.city }}, {{ userInfo.province }}</text>
       <text :hidden="!userInfo.city">Thanks~</text>
+      <button class-hover @click="getBookIsbn" :hidden="!userInfo.city">扫码添加图书</button>
     </view>
   </div>
 </template>
 
 <script>
   import {login} from '@/utils/wechat'
+  import { addBook} from '@/utils/api'
   export default {
     data () {
       return {
@@ -30,6 +32,31 @@
     methods: {
       getUserInfo (e) {
         this.userInfo = e.mp.detail.userInfo
+      },
+      getBookIsbn () {
+        // 允许从相机和相册扫码
+        wx.scanCode({
+          async success (res) {
+           let book=await addBook(res.result)
+            console.log(book)
+            if(book.code == 0){
+              wx.showToast({
+                title: '添加成功',
+                icon: 'success',
+                duration: 2000
+              })
+            }else {
+              wx.showToast({
+                title: '添加失败了',
+                duration: 2000
+              })
+            }
+          },
+          fail(res){
+            console.log('扫码失败')
+            console.log(res)
+          }
+        })
       }
     },
 

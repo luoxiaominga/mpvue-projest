@@ -1,4 +1,4 @@
-// 命名：模块名+功能
+LIST_CLEAR_STATE// 命名：模块名+功能
 export const ITEM_MOVIE_DETAIL = 'ITEM_MOVIE_DETAIL' // 电影详情
 export const ITEM_CLEAR_MOVIE = 'ITEM_CLEAR_MOVIE' // 清除电影详情数据
 

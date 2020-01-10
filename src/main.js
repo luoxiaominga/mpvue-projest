@@ -32,13 +32,13 @@ export default {
       list: [
         {
           text: '榜单',
-          pagePath: 'pages/board/main',
+          pagePath: 'pages/series/main',
           iconPath: 'static/images/board.png',
           selectedIconPath: 'static/images/board-actived.png'
         },
         {
           text: '搜索',
-          pagePath: 'pages/series/main',
+          pagePath: 'pages/search/main',
           iconPath: 'static/images/search.png',
           selectedIconPath: 'static/images/search-actived.png'
         },

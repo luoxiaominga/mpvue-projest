@@ -10,18 +10,18 @@
         @change="handleSearch"
       >
     </view>
-    <movie-list v-if="movies.length" :movies="movies" :has-more="hasMore"></movie-list>
+    <book-list v-if="movies.length" :movies="movies" :has-more="hasMore"></book-list>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex'
-import MovieList from '@/components/movie-list'
+import BookList from '@/components/book-list'
 import { LIST_CLEAR_STATE } from '@/store/mutations-type'
 
 export default {
   components: {
-    'movie-list': MovieList
+    'book-list': BookList
   },
 
   data () {
@@ -32,14 +32,14 @@ export default {
   },
 
   computed: {
-    ...mapState('list', ['movies', 'hasMore', 'type'])
+    ...mapState('listBooks', ['movies', 'hasMore', 'type'])
   },
 
   methods: {
-    ...mapMutations('list', {
+    ...mapMutations('listBooks', {
       clearState: LIST_CLEAR_STATE
     }),
-    ...mapActions('list', [
+    ...mapActions('listBooks', [
       'getMovies'
     ]),
     async getSearchData () {

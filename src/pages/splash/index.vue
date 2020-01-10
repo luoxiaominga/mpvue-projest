@@ -20,7 +20,7 @@
 
 <script>
 import { getStorage, setStorage } from '@/utils/wechat'
-import { getBoardData } from '@/utils/api'
+import { getBookSeriesData } from '@/utils/api'
 const LAST_SPLASH_DATA = 'LAST_SPLASH_DATA'
 
 export default {
@@ -50,7 +50,7 @@ export default {
     handleStart () {
       // TODO: 访问历史的问题
       wx.switchTab({
-        url: '../board/main'
+        url: '../series/main'
       })
     },
 
@@ -60,8 +60,8 @@ export default {
         this.movies = cache.movies
         return
       }
-      let data = await getBoardData({ board: 'top250', page: 1, count: 4 })
-      this.movies = data.subjects
+      let data = await getBookSeriesData({ id: '2065', page: 1, count: 4 })
+      this.movies = data.books
       await setStorage(LAST_SPLASH_DATA, {
         movies: data.subjects,
         expires: Date.now() + 1 * 24 * 60 * 60 * 1000
